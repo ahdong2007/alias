@@ -1,0 +1,168 @@
+# 临时性地禁用别名：## path/to/full/command
+## /usr/bin/clear
+# call alias with a backslash ##
+## \c
+# use /bin/ls command and avoid ls alias ##
+##command ls
+
+# 删除别名
+unalias aliasname
+
+# alias
+
+#1: 控制 ls 命令的输出
+
+## Colorize the ls output ##
+alias ls = 'ls --color=auto'
+
+## Use a long listing format ##
+alias ll = 'ls -la'
+
+## Show hidden files ##
+alias l.= 'ls -d . .. .git .gitignore .gitmodules .travis.yml --color=auto'
+
+#2: 控制 cd 命令的行为
+## get rid of command not found ##
+alias cd..= 'cd ..'
+
+## a quick way to get out of current directory ##
+alias ..= 'cd ..'
+alias ...= 'cd ../../../'
+alias ....= 'cd ../../../../'
+alias .....= 'cd ../../../../'
+alias .4= 'cd ../../../../'
+alias .5= 'cd ../../../../..'
+
+#3: 控制 grep 命令的输出
+## Colorize the grep command output for ease of use (good for log files)##
+alias grep = 'grep --color=auto'
+alias egrep = 'egrep --color=auto'
+alias fgrep = 'fgrep --color=auto'
+
+#4：让计算器默认开启 math 库
+alias bc = 'bc -l'
+
+#5：自动创建父目录
+alias mkdir = 'mkdir -pv'
+
+#6：为 diff 输出着色
+# install colordiff package :)
+alias diff = 'colordiff'
+
+#7：让 mount 命令的输出更漂亮，更方便人类阅读
+alias mount = 'mount |column -t'
+
+#8：简化命令以节省时间
+# handy short cuts #
+alias h = 'history' 
+alias j = 'jobs -l'
+
+#9：创建一系列新命令
+alias path = 'echo -e ${PATH//:/\\n}'
+alias now = 'date +"%T"'
+alias nowtime =now
+alias nowdate = 'date +"%d-%m-%Y"'
+
+#10：设置 vim 为默认编辑器
+alias vi = vim
+alias svi = 'sudo vi'
+alias vis = 'vim "+set si"'
+alias edit = 'vim'
+
+#11：控制网络工具 ping 的输出
+# Stop after sending count ECHO_REQUEST packets #
+alias ping = 'ping -c 5'
+
+# Do not wait interval 1 second, go fast #
+alias fastping = 'ping -c 100 -s.2'
+
+#12：显示打开的端口
+alias ports = 'netstat -tulanp'
+
+#13：唤醒休眠的服务器
+## replace mac with your actual server mac address #
+alias wakeupnas01 = '/usr/bin/wakeonlan 00:11:32:11:15:FC'
+alias wakeupnas02 = '/usr/bin/wakeonlan 00:11:32:11:15:FD'
+alias wakeupnas03 = '/usr/bin/wakeonlan 00:11:32:11:15:FE'
+
+#14：控制防火墙 (iptables) 的输出
+## shortcut for iptables and pass it via sudo#
+alias ipt = 'sudo /sbin/iptables'
+
+# display all rules #
+alias iptlist = 'sudo /sbin/iptables -L -n -v --line-numbers'
+alias iptlistin = 'sudo /sbin/iptables -L INPUT -n -v --line-numbers'
+alias iptlistout = 'sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
+alias iptlistfw = 'sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
+alias firewall =iptlist
+
+#15：使用 curl 调试 web 服务器 / CDN 上的问题
+# get web server headers #
+alias header = 'curl -I'
+
+# find out if remote server supports gzip / mod_deflate or not #
+alias headerc = 'curl -I --compress
+
+#16：增加安全性
+# do not delete / or prompt if deleting more than 3 files at a time #
+alias rm = 'rm -I --preserve-root'
+
+# confirmation #
+alias mv = 'mv -i'
+alias cp = 'cp -i'
+alias ln = 'ln -i' 
+
+# Parenting changing perms on / #
+alias chown = 'chown --preserve-root'
+alias chmod = 'chmod --preserve-root'
+alias chgrp = 'chgrp --preserve-root'
+
+#17：更新 RHEL / CentOS / Fedora Linux 服务器
+## distrp specifc RHEL/CentOS ##
+alias update = 'yum update'
+alias updatey = 'yum -y update'
+
+#18：优化 sudo 和 su 命令
+# become root #
+alias root = 'sudo -i' 
+alias su = 'sudo -i'
+
+#18：快速获取系统内存，cpu 使用，和 gpu 内存相关信息
+## pass options to free ##
+alias meminfo = 'free -m -l -t' 
+
+## get top process eating memory
+alias psmem = 'ps auxf | sort -nr -k 4' 
+alias psmem10 = 'ps auxf | sort -nr -k 4 | head -10'
+
+## get top process eating cpu ##
+alias pscpu = 'ps auxf | sort -nr -k 3'
+alias pscpu10 = 'ps auxf | sort -nr -k 3 | head -10' 
+
+## Get server cpu info ##
+alias cpuinfo = 'lscpu'
+
+## older system use /proc/cpuinfo ##
+##alias cpuinfo='less /proc/cpuinfo' ##
+
+## get GPU ram on desktop / laptop##
+alias gpumeminfo = 'grep -i --color memory /var/log/Xorg.0.log'
+
+#19：wget 默认断点续传
+## this one saved by butt so many times ##
+alias wget = 'wget -c'
+
+#19：关于 ssh 别名的注意事项
+## 不要创建 ssh 别名，代之以 ~/.ssh/config 这个 OpenSSH SSH 客户端配置文件。它的选项更加丰富。下面是一个例子：
+###Host server10
+### Hostname 1.2.3.4
+### IdentityFile ~/backups/.ssh/id_dsa
+### user foobar
+### Port 30000
+### ForwardX11Trusted yes
+### TCPKeepAlive yes
+### 然后你就可以使用下面语句连接 server10 了：$ ssh server10
+
+
+
+
